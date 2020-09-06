@@ -32,8 +32,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.select(:type, options_for_select(product, :type)) %> 
+    <%= form.label :holaaa %>
+    <%= form.select :category, Product.categories.keys, {}%>
   </div>
 
 
@@ -42,10 +42,7 @@
     <%= form.text_field :products_pic %>
   </div>
 
-  <div class="field">
-    <%= form.label :profile %>
-    <%= form.text_field :profile , :value => current_user.profile %> 
-  </div>
+
 
   <div class="actions">
     <%= form.submit %>

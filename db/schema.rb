@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_032759) do
     t.string "name"
     t.integer "price"
     t.integer "rating"
-    t.integer "type"
+    t.integer "category"
     t.string "products_pic"
     t.bigint "profile_id"
     t.datetime "created_at", precision: 6, null: false

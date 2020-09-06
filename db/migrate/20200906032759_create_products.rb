@@ -5,10 +5,9 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :price
       t.integer :rating
-      t.integer :type
+      t.integer :category
       t.string :products_pic
-      t.references :profile, foreign_key: true 
-
+      t.references :profile, foreign_key: true
       t.timestamps
     end
   end

@@ -6,12 +6,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
   
-  after_create do
+  # after_create do
   
-  if self.profile.nil?
+  # if self.profile.nil?
+  #
+  # profile = Profile.create(user_id: self.id)
+  # end
   
-  profile = Profile.create(user_id: self.id)
-  end
-  
-  end
+  # end
   end 

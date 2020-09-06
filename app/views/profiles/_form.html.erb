@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :role %>
-    <%= form.number_field :role %>
+    <%= form.select :role, Profile.roles.keys, {}%>
   </div>
 
   <div class="field">
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, value: current_user.id%>
   </div>
 
   <div class="actions">

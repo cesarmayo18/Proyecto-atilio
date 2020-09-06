@@ -4,7 +4,9 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.all if current_user.profile.cliente?
+    @products = Product.where(profile_id: current_user.profile.id) if current_user.profile.tienda?
+    redirect_to root_path if current_user.profile.repartidor?
   end
 
   # GET /products/1
@@ -14,18 +16,26 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    redirect_to root_path if current_user.profile.repartidor? || current_user.profile.cliente?
     @product = Product.new
   end
 
   # GET /products/1/edit
   def edit
+    redirect_to root_path if current_user.profile.repartidor? || current_user.profile.cliente?
   end
 
   # POST /products
   # POST /products.json
   def create
     puts  product_params
+    puts '--------here'
     @product = Product.new(product_params)
+    puts '--------'
+    puts current_user.profile.id
+    @product.profile = current_user.profile
+    #@product= Product.new(profiles_id:current_user.id)
+    puts @product
 
     respond_to do |format|
       if @product.save
@@ -70,6 +80,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:description, :name, :price, :rating, :type, :store_id, :products_pic, :profile)
+      params.require(:product).permit(:description, :name, :price, :rating, :category, :store_id, :products_pic, :profile)
     end
 end

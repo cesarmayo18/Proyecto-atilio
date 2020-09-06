@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
   resources :products
   resources :profiles
   devise_for :users
