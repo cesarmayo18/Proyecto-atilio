@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<h2>Pronostico de el clima: <%= image_tag(@icon) %> <%=@clima["current"]["condition"]["text"] %></h2>
+
+
+<h1>Historial de ordenes</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Profile</th>
+    <th>Status</th>
+    <th>Product</th>
+    <th>Profile</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= Profile.find(order.repartidor_id).name %></td>
+      <td><%= order.status %></td>
+      <td><%= Product.find(order.product_id).name %></td>
+      <td><%= Profile.find(order.cliente_id).name %></td>
+      <td><%=image_tag Product.find(order.product_id).products_pic, style: 'height:70px;width:auto;'  %></td>s
+      <td><%= link_to "Entregar", "/order/entregar/#{order.id}" if order.camino?%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>

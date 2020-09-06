@@ -6,15 +6,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    puts 'entro en esta mierda!!!!!'
     super
   end
 
   # POST /resource
   def create
-    puts 'entro en esta mierda!!!!!'
     super
-    redirect_to
   end
 
   # GET /resource/edit

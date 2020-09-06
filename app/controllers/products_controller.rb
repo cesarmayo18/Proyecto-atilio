@@ -28,13 +28,8 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    puts  product_params
-    puts '--------here'
     @product = Product.new(product_params)
-    puts '--------'
-    puts current_user.profile.id
     @product.profile = current_user.profile
-    #@product= Product.new(profiles_id:current_user.id)
     puts @product
 
     respond_to do |format|

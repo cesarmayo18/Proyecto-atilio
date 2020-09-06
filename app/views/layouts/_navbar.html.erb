@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <% if current_user %>
+        <li class="nav-item"><%= link_to 'Perfil', "/profiles/#{current_user.profile.id}", class: "nav-link" if current_user.profile%></li>
+        <li class="nav-item"><%= link_to 'Productos', products_path, class: "nav-link" if current_user.profile && !current_user.profile.repartidor? %></li>
+        <li class="nav-item"><%= link_to 'Ordenes', orders_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to 'Historial de ordenes', '/repartidor/dashboard', class: "nav-link" if current_user.profile && current_user.profile.repartidor? %></li>
+        <li class="nav-item"><%= link_to 'Logout', destroy_user_session_path, method: :delete , class: "nav-link" %></li>
+        <li class="nav-item"><a class="nav-link"><%=current_user.profile.role if current_user.profile%></a></li>
+        <li class="nav-item"><a class="nav-link">$<%=current_user.profile.balance if current_user.profile%></a></li>
+      <% else %>
+        <li class="nav-item"><%= link_to "Registrate",  new_user_registration_path, class: "nav-link"%></li>
+        <li class="nav-item"><%= link_to "Inicia Sesión",  new_user_session_path, class: "nav-link"%></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
